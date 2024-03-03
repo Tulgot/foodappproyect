@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">EasyFood</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    bottom nav bar-->
+    <string name="btmnav_home">Home</string>
+    <string name="btmnav_favorites">Favorties</string>
+    <string name="btmnav_categories">Categories</string>
+
+    <!--    Home Fragment-->
+    <string name="homefragmentheader">Home</string>
+    <string name="homefragmenttitle1">What would you like to eat?</string>
+</resources>
