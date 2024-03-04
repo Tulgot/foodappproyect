@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFFF0000</color>
 
 
 <!--    main colors-->
@@ -11,4 +12,6 @@
 
 <!--    btmnavbar-->
     <color name="selecteditembottomnavmenu">#f52c56</color>
+
+
 </resources>
