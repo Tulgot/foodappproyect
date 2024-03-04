@@ -11,4 +11,6 @@
     <!--    Home Fragment-->
     <string name="homefragmentheader">Home</string>
     <string name="homefragmenttitle1">What would you like to eat?</string>
+    <string name="popularitem">Over popular items</string>
+    <string name="category">Category</string>
 </resources>

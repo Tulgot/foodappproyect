@@ -1,10 +1,11 @@
-package com.example.easyfood
+package com.example.easyfood.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.easyfood.R
 import com.example.easyfood.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

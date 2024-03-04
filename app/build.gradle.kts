@@ -52,4 +52,18 @@ dependencies {
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //retrofit
+    val retrofit_version = "2.9.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+
+    //Picasso
+    val picasso_version = "2.8"
+    implementation("com.squareup.picasso:picasso:$picasso_version")
+
+    //videoModel MVVM
+//    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-rc01")
+//    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-rc01")
+//    implementation("android.arch.lifecycle:extensions:1.1.0")
 }

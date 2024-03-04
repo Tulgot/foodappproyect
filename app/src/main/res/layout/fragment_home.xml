@@ -4,16 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment"
-    android:layout_marginStart="30dp">
+    tools:context=".fragments.HomeFragment"
+    >
 
     <LinearLayout
         android:id="@+id/linearHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
+        style="@style/foodappTextMargin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,19 +36,83 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvLiketoeat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/myfont"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
+        style="@style/foodapptextstyleandmargin"
         android:text="@string/homefragmenttitle1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearHeader"/>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvRandommeal"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        style="@style/foodappImageMargin"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toBottomOf="@+id/tvLiketoeat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <ImageView
+            android:id="@+id/ivRandommeal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:background="@color/accent"
+            android:scaleType="centerCrop"
+            />
+    </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/tvPopularitem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/foodapptextstyleandmargin"
+        android:text="@string/popularitem"
+        app:layout_constraintTop_toBottomOf="@+id/cvRandommeal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPopularmeals"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        style="@style/foodappImageMargin"
+        app:layout_constraintTop_toBottomOf="@id/tvPopularitem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/foodapptextstyleandmargin"
+        android:text="@string/category"
+        app:layout_constraintTop_toBottomOf="@+id/rvPopularmeals"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvCategories"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        style="@style/foodappImageMargin"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCategory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcCategories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            />
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

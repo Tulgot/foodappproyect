@@ -12,4 +12,29 @@
     <style name="Bottomnavmenu.selected.inidcator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/selecteditembottomnavmenu</item>
     </style>
+
+    <style name="foodappTextMargin">
+        <item name="android:layout_marginStart">30dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="foodappImageMargin" parent="foodappTextMargin">
+        <item name="android:layout_marginStart">25dp</item>
+    </style>
+
+    <style name="foodapptextstyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/myfont</item>
+    </style>
+
+    <style name="foodapptextstyleandmargin" parent="foodappTextMargin">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/myfont</item>
+    </style>
+
 </resources>
