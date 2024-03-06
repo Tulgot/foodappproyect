@@ -22,10 +22,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/myfont"
-            android:textColor="@color/accent"
+            android:textColor="@color/secondary"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:text="@string/homefragmentheader"/>
+            android:text="@string/homefragmentheader"
+            android:shadowColor="@color/primary"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"/>
 
         <ImageView
             android:id="@+id/imgSearch"
