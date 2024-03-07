@@ -1,7 +1,10 @@
 package com.example.easyfood.activities
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.easyfood.R
@@ -18,7 +21,7 @@ class MealActivity : AppCompatActivity() {
     private lateinit var mealname: String
     private lateinit var mealthumb: String
     private lateinit var MealMVVM: MealViewModel
-    private lateinit var MealDetail: Meal
+    private lateinit var youtube: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +39,14 @@ class MealActivity : AppCompatActivity() {
         showMealInfo()
         MealMVVM.getMealDetail(mealid)
         observeMealDetail()
+        onYoutubeImageClick()
+    }
+
+    private fun onYoutubeImageClick() {
+        binding.ivYoutube.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtube))
+            startActivity(intent)
+        }
     }
 
     private fun observeMealDetail() {
@@ -44,6 +55,7 @@ class MealActivity : AppCompatActivity() {
                 binding.tvLocation.text = "Area: ${value.strArea}"
                 binding.tvCategory.text = "Category: ${value.strCategory}"
                 binding.tvDetailInstructions.text = value.strInstructions
+                youtube = value.strYoutube
             }
         })
     }
@@ -59,4 +71,5 @@ class MealActivity : AppCompatActivity() {
         binding.tvMealtitle.text = mealname
         Picasso.get().load(mealthumb).into(binding.ivMealdetail)
     }
+
 }
