@@ -15,7 +15,6 @@ import retrofit2.Response
 class MealViewModel():ViewModel() {
 
     private var mealDetailsLiveData =  MutableLiveData<Meal>()
-    private var popularItemsLiveData = MutableLiveData<List<CategoryMeals>>()
 
     fun getMealDetail(id:String){
         RetrofitInstance.api.getMealDetail(id).enqueue(object:  Callback<MealList>{
@@ -39,24 +38,5 @@ class MealViewModel():ViewModel() {
         return mealDetailsLiveData
     }
 
-    fun getPopularItems(){
-        RetrofitInstance.api.getPopularItems("Seafood").enqueue(object : Callback<CategoryList>
-        {
-            override fun onResponse(call: Call<CategoryList>, response: Response<CategoryList>) {
-                if (response.body() != null){
-                    popularItemsLiveData.value = response.body()!!.meals
-                }else{
-                    return
-                }
-            }
 
-            override fun onFailure(call: Call<CategoryList>, t: Throwable) {
-                Log.i("TEST", t.message.toString())
-            }
-        })
-    }
-
-    fun observePopularMealsItems(): MutableLiveData<List<CategoryMeals>>{
-        return popularItemsLiveData
-    }
 }

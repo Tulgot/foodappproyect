@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.easyfood.activities.MealActivity
+import com.example.easyfood.adapters.MostPopularAdapter
 import com.example.easyfood.databinding.FragmentHomeBinding
 import com.example.easyfood.pojo.Meal
 import com.example.easyfood.viewmodel.HomeViewModel
@@ -20,6 +23,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var homeMvvm: HomeViewModel
     private lateinit var randomMeal: Meal
+    private lateinit var popularItemsAdapter: MostPopularAdapter
 
     companion object{
         const val MEAL_ID = "com.example.easyfood.fragments.idMeal"
@@ -49,13 +53,31 @@ class HomeFragment : Fragment() {
 
     private fun initUI() {
         initRamdomMeal()
+        popularItemsAdapter = MostPopularAdapter()
+        binding.rvPopularmeals.setHasFixedSize(true)
+        binding.rvPopularmeals.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPopularmeals.adapter = popularItemsAdapter
     }
 
     private fun initRamdomMeal() {
         homeMvvm.getRandomMeal()
         observeRandomMeal()
         onRandomMealClick()
+        homeMvvm.getPopularItems()
+        observePopularItems()
+    }
 
+//    private fun preparePopularItemsRecyclerView(){
+//        binding.rvPopularmeals.apply {
+//            LayoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+//        }
+//    }
+
+    private fun observePopularItems() {
+        homeMvvm.observePopularMealsItems().observe(viewLifecycleOwner
+        ) { mealList->
+
+        }
     }
 
     private fun onRandomMealClick() {
