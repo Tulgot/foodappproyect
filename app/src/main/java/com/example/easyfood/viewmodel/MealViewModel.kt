@@ -3,8 +3,6 @@ package com.example.easyfood.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.easyfood.pojo.CategoryList
-import com.example.easyfood.pojo.CategoryMeals
 import com.example.easyfood.pojo.Meal
 import com.example.easyfood.pojo.MealList
 import com.example.easyfood.retrofit.RetrofitInstance
