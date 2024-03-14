@@ -18,13 +18,7 @@ class MostPopularAdapter : RecyclerView.Adapter<MostPopularAdapter.PopularMealVi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMealViewHolder {
-        return PopularMealViewHolder(
-            PopularItemsBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        return PopularMealViewHolder(PopularItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int {

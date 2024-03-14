@@ -19,7 +19,7 @@ class HomeViewModel(): ViewModel() {
 
     private var randomMealLiveData = MutableLiveData<Meal>()
     private var popularItemsLiveData = MutableLiveData<List<MealsByCategory>>()
-    private var CategoryLiveData = MutableLiveData<List<Category>>()
+    private var CategoriesLiveData = MutableLiveData<List<Category>>()
     fun getRandomMeal(){
         RetrofitInstance.api.getRandomMeal().enqueue(object: Callback<MealList> {
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
@@ -46,10 +46,13 @@ class HomeViewModel(): ViewModel() {
         RetrofitInstance.api.getPopularItems("Seafood").enqueue(object : Callback<MealsByCategoryList>
         {
             override fun onResponse(call: Call<MealsByCategoryList>, response: Response<MealsByCategoryList>) {
-                if (response.body() != null){
-                    popularItemsLiveData.value = response.body()!!.meals
-                }else{
-                    return
+//                if (response.body() != null){
+//                    popularItemsLiveData.value = response.body()!!.meals
+//                }else{
+//                    return
+//                }
+                response.body()?.let {
+                    popularItemsLiveData.postValue(it.meals)
                 }
             }
 
@@ -67,10 +70,8 @@ class HomeViewModel(): ViewModel() {
         RetrofitInstance.api.getCategories().enqueue(object : Callback<CategoryList>
         {
             override fun onResponse(call: Call<CategoryList>, response: Response<CategoryList>) {
-                if (response.body() != null){
-                    CategoryLiveData.value = response.body()!!.categories
-                }else{
-                    return
+                response.body()?.let { categoryList ->
+                    CategoriesLiveData.postValue(categoryList.categories)
                 }
             }
 
@@ -81,7 +82,7 @@ class HomeViewModel(): ViewModel() {
         })
     }
 
-    fun observeCategoryItems(): MutableLiveData<List<Category>>{
-        return CategoryLiveData
+    fun observeCategoryLiveData(): MutableLiveData<List<Category>>{
+        return CategoriesLiveData
     }
 }

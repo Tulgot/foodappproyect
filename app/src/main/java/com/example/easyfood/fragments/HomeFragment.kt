@@ -2,6 +2,7 @@ package com.example.easyfood.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.easyfood.activities.MealActivity
+import com.example.easyfood.adapters.CategoriesAdapter
 import com.example.easyfood.adapters.MostPopularAdapter
 import com.example.easyfood.databinding.FragmentHomeBinding
+import com.example.easyfood.pojo.Category
 import com.example.easyfood.pojo.MealsByCategory
 import com.example.easyfood.pojo.Meal
 import com.example.easyfood.viewmodel.HomeViewModel
@@ -24,6 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeMvvm: HomeViewModel
     private lateinit var randomMeal: Meal
     private lateinit var popularItemsAdapter: MostPopularAdapter
+    private lateinit var categoriesItemAdapter: CategoriesAdapter
 
     companion object{
         const val MEAL_ID = "com.example.easyfood.fragments.idMeal"
@@ -35,6 +39,7 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         homeMvvm = ViewModelProvider(this)[HomeViewModel::class.java]
         popularItemsAdapter = MostPopularAdapter()
+        categoriesItemAdapter = CategoriesAdapter()
     }
 
     override fun onCreateView(
@@ -54,9 +59,18 @@ class HomeFragment : Fragment() {
 
     private fun initUI() {
         preparePopularItemsRecyclerView()
+        prepareCategoriesItemRecyclerView()
         initRamdomMeal()
         initPopularItems()
+        initCategories()
     }
+
+    private fun prepareCategoriesItemRecyclerView() {
+        binding.rvCategories.setHasFixedSize(true)
+        binding.rvCategories.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvCategories.adapter = categoriesItemAdapter
+    }
+
 
     private fun preparePopularItemsRecyclerView() {
         binding.rvPopularmeals.setHasFixedSize(true)
@@ -74,6 +88,18 @@ class HomeFragment : Fragment() {
         observePopularItems()
         onPopularItemsClick()
     }
+
+    private fun initCategories() {
+        homeMvvm.getCategories()
+        observeCategoriesLiveData()
+    }
+
+    private fun observeCategoriesLiveData() {
+        homeMvvm.observeCategoryLiveData().observe(viewLifecycleOwner){
+            categoriesItemAdapter.setCategories(it as ArrayList<Category>)
+        }
+    }
+
 
     private fun onPopularItemsClick() {
         popularItemsAdapter.onItemClick = {meal->
