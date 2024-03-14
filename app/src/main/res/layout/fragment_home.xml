@@ -104,6 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         style="@style/foodappImageMargin"
+        app:cardBackgroundColor="@color/third"
         android:layout_marginBottom="10dp"
         app:cardCornerRadius="10dp"
         app:cardUseCompatPadding="true"
@@ -111,12 +112,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCategory"
         app:layout_constraintBottom_toBottomOf="parent"
+
         >
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategories"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:scrollbars="none"
             />
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

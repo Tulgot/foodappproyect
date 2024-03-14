@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.easyfood.activities.MealActivity
 import com.example.easyfood.adapters.CategoriesAdapter
 import com.example.easyfood.adapters.MostPopularAdapter
@@ -67,7 +69,7 @@ class HomeFragment : Fragment() {
 
     private fun prepareCategoriesItemRecyclerView() {
         binding.rvCategories.setHasFixedSize(true)
-        binding.rvCategories.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvCategories.layoutManager = GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
         binding.rvCategories.adapter = categoriesItemAdapter
     }
 
