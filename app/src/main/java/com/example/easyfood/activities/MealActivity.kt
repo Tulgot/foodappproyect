@@ -2,12 +2,10 @@ package com.example.easyfood.activities
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.easyfood.R
 import com.example.easyfood.databinding.ActivityMealBinding
 import com.example.easyfood.fragments.HomeFragment
 import com.example.easyfood.pojo.Meal

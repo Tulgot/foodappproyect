@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.example.easyfood.activities.CategoryMealsActivity
 import com.example.easyfood.activities.MealActivity
 import com.example.easyfood.adapters.CategoriesAdapter
 import com.example.easyfood.adapters.MostPopularAdapter
@@ -35,6 +36,7 @@ class HomeFragment : Fragment() {
         const val MEAL_ID = "com.example.easyfood.fragments.idMeal"
         const val MEAL_NAME = "com.example.easyfood.fragments.nameMeal"
         const val MEAL_THUMB = "com.example.easyfood.fragments.thumbMeal"
+        const val CATEGORY_NAME = "com.example.easyfood.fragments.strCategory"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +96,15 @@ class HomeFragment : Fragment() {
     private fun initCategories() {
         homeMvvm.getCategories()
         observeCategoriesLiveData()
+        onCategoryItemsClick()
+    }
+
+    private fun onCategoryItemsClick() {
+        categoriesItemAdapter.onItemClick = {
+            val intent = Intent(activity, CategoryMealsActivity::class.java)
+            intent.putExtra(CATEGORY_NAME, it.strCategory)
+            startActivity(intent)
+        }
     }
 
     private fun observeCategoriesLiveData() {

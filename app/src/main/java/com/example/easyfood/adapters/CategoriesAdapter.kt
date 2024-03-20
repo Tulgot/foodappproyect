@@ -12,6 +12,7 @@ import com.squareup.picasso.Picasso
 class CategoriesAdapter:RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
 
     private var categoryList = ArrayList<Category>()
+    var onItemClick: ((Category)->Unit)? = null
 
     fun setCategories(categoryList: ArrayList<Category>){
         this.categoryList = categoryList
@@ -25,6 +26,10 @@ class CategoriesAdapter:RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHol
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
         Picasso.get().load(categoryList[position].strCategoryThumb).into(holder.binding.ivCategory)
         holder.binding.tvCategoryName.text = categoryList[position].strCategory
+
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(categoryList[position])
+        }
     }
 
     override fun getItemCount(): Int {
