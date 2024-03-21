@@ -2,7 +2,6 @@ package com.example.easyfood.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +10,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.easyfood.activities.CategoryMealsActivity
 import com.example.easyfood.activities.MealActivity
 import com.example.easyfood.adapters.CategoriesAdapter
 import com.example.easyfood.adapters.MostPopularAdapter
 import com.example.easyfood.databinding.FragmentHomeBinding
 import com.example.easyfood.pojo.Category
-import com.example.easyfood.pojo.MealsByCategory
 import com.example.easyfood.pojo.Meal
+import com.example.easyfood.pojo.MealsByCategory
 import com.example.easyfood.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
@@ -32,7 +30,7 @@ class HomeFragment : Fragment() {
     private lateinit var popularItemsAdapter: MostPopularAdapter
     private lateinit var categoriesItemAdapter: CategoriesAdapter
 
-    companion object{
+    companion object {
         const val MEAL_ID = "com.example.easyfood.fragments.idMeal"
         const val MEAL_NAME = "com.example.easyfood.fragments.nameMeal"
         const val MEAL_THUMB = "com.example.easyfood.fragments.thumbMeal"
@@ -71,16 +69,19 @@ class HomeFragment : Fragment() {
 
     private fun prepareCategoriesItemRecyclerView() {
         binding.rvCategories.setHasFixedSize(true)
-        binding.rvCategories.layoutManager = GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
+        binding.rvCategories.layoutManager =
+            GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
         binding.rvCategories.adapter = categoriesItemAdapter
     }
 
 
     private fun preparePopularItemsRecyclerView() {
         binding.rvPopularmeals.setHasFixedSize(true)
-        binding.rvPopularmeals.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPopularmeals.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvPopularmeals.adapter = popularItemsAdapter
     }
+
     private fun initRamdomMeal() {
         homeMvvm.getRandomMeal()
         observeRandomMeal()
@@ -108,14 +109,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeCategoriesLiveData() {
-        homeMvvm.observeCategoryLiveData().observe(viewLifecycleOwner){
+        homeMvvm.observeCategoryLiveData().observe(viewLifecycleOwner) {
             categoriesItemAdapter.setCategories(it as ArrayList<Category>)
         }
     }
 
 
     private fun onPopularItemsClick() {
-        popularItemsAdapter.onItemClick = {meal->
+        popularItemsAdapter.onItemClick = { meal ->
             val intent = Intent(activity, MealActivity::class.java)
             intent.putExtra(MEAL_ID, meal.idMeal)
             intent.putExtra(MEAL_NAME, meal.strMeal)
@@ -125,8 +126,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun observePopularItems() {
-        homeMvvm.observePopularMealsItems().observe(viewLifecycleOwner
-        ) { mealList->
+        homeMvvm.observePopularMealsItems().observe(
+            viewLifecycleOwner
+        ) { mealList ->
             popularItemsAdapter.setMeals(mealList as ArrayList<MealsByCategory>)
         }
     }
@@ -142,7 +144,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeRandomMeal() {
-        homeMvvm.observeRandomLiveData().observe(viewLifecycleOwner, object : Observer<Meal>{
+        homeMvvm.observeRandomLiveData().observe(viewLifecycleOwner, object : Observer<Meal> {
             override fun onChanged(value: Meal) {
                 Picasso.get().load(value.strMealThumb).into(binding.ivRandommeal)
                 randomMeal = value
