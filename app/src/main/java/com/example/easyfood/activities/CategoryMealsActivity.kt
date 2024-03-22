@@ -10,6 +10,7 @@ import com.example.easyfood.adapters.CategoriesAdapter
 import com.example.easyfood.adapters.CategoryMealsAdapter
 import com.example.easyfood.databinding.ActivityCategoryMealsBinding
 import com.example.easyfood.fragments.HomeFragment
+import com.example.easyfood.pojo.MealsByCategory
 import com.example.easyfood.viewmodel.CategoryMealsViewModel
 
 class CategoryMealsActivity : AppCompatActivity() {
@@ -44,11 +45,9 @@ class CategoryMealsActivity : AppCompatActivity() {
     }
 
     private fun observeCategoryMealsViewModel() {
-        categoryMealsViewModel.observeMealsByCategory().observe(this, Observer{
-            it.forEach{
-//                Log.i("Test", it.strMeal)
-               //redo
-            }
+        categoryMealsViewModel.observeMealsByCategory().observe(this, Observer {
+            binding.tvCategoryCount.text = it.size.toString()
+            categoryMealsAdapter.setMealList(it)
         })
 
     }

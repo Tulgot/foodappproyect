@@ -28,9 +28,8 @@ class CategoryMealsAdapter: RecyclerView.Adapter<CategoryMealsAdapter.CategoryMe
         holder: CategoryMealsAdapter.CategoryMealsViewModel,
         position: Int
     ) {
-        var category = mealsList[position].strMealThumb
-        Picasso.get().load(category).into(holder.binding.imgMeal)
-        holder.binding.tvMealName.text = category
+        Picasso.get().load(mealsList[position].strMealThumb).into(holder.binding.imgMeal)
+        holder.binding.tvMealName.text = mealsList[position].strMeal
     }
 
     override fun getItemCount(): Int {
